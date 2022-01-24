@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html layout:decorator="layout">
+<head>
+    <meta charset="UTF-8">
+    <title>Grade Page</title>
+    <style>
+
+#customers {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #DDA26D;
+  color: white;
+}
+.totalGrade{
+float:right;
+}
+    </style>
+</head>
+<body>
+<div layout:fragment="content">
+    <h1 class="totalGrade">Total : <span th:text="${userGrade}"></span></h1>
+    <br><br>
+    <h1 >Grades for <span th:text="${student.getName()}"></span> .</h1>
+    <br><br>
+
+    <table id="customers">
+        <tr>
+            <th>Name</th>
+            <th>Due</th>
+            <th>Score</th>
+            <th>OutOf</th>
+        </tr>
+
+
+        <tr th:each="taske:${admin}">
+        <div th:if="${taske!=null}">
+            <td><a th:href="'/DMQRzZWMDdGQtbn/331134333'+${taske.getId()}+'MDdGQtbn/DMQRzZ11343'+${student.getId()}"> <span th:text="${taske.getTitle()}"></span></a></td>
+                                <td th:text="${taske.getCreatedAt()}"></td>
+            <td ><span th:text="${(taske.getgradee(gradeRepo,student.getId(),taske.getId())).getContent()}"></span></td>
+            <td ><span th:text="${(taske.getgradee(gradeRepo,student.getId(),taske.getId())).getOutOf()}"></span></td>
+
+        </div>
+    </tr>
+
+    </table>
+</div>
+</body>
+</html>
+
+
+
+
+
+
